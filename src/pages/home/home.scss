@@ -1,0 +1,77 @@
+page-home {
+  @keyframes messageInLeft {
+    0% {
+      opacity: .5;
+      transform: translate3d(-5%, -5%, 0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes messageInRight {
+    0% {
+      opacity: .5;
+      transform: translate3d(5%, -5%, 0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .messages {
+    margin-bottom: 40px;
+
+    .message {
+      animation-duration: .2s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-in;
+      overflow: hidden;
+      padding: 10px;
+      transform: translate3d(0, 0, 0);
+      transition: all 250ms ease-in-out;
+      user-select: text;
+
+      &.receiving {
+        ion-spinner * {
+          fill: color($colors, light, base);
+        }
+      }
+
+      &.selected {
+        animation-name: messageInRight;
+        text-align: right;
+
+        span {
+          background: color($colors, secondary, base);
+          border-top-right-radius: 0;
+        }
+      }
+
+      &:not(.selected) {
+        animation-name: messageInLeft;
+
+        span {
+          background: color($colors, primary, base);
+          border-top-left-radius: 0;
+        }
+      }
+
+      span {
+        border-radius: 3px;
+        color: color($colors, light, base);
+        display: inline-block;
+        padding: 10px;
+      }
+    }
+  }
+
+  .choices {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}

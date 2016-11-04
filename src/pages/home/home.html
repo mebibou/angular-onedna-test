@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      onedna
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="messages">
+    <div class="message" *ngFor="let message of messages" [ngClass]="{'selected': message.selected}">
+      <span *ngIf="!message.answer">{{message.text}}</span>
+    </div>
+
+    <div class="message receiving" *ngIf="loadingMessages">
+      <span><ion-spinner name="dots"></ion-spinner></span>
+    </div>
+  </div>
+
+  <ion-row class="choices" *ngIf="choices">
+    <ion-col *ngFor="let choice of choices" class="width-{{100 * choices.length}}">
+      <button ion-button full color="{{choice.type}}" (click)="selectChoice(choice)">{{choice.text}}</button>
+    </ion-col>
+  </ion-row>
+</ion-content>
